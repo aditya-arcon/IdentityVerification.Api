@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using IdentityVerification.Api.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,7 @@ builder.Services.AddScoped<ITemplateFormFieldService, TemplateFormFieldService>(
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IResponseSubmissionService, ResponseSubmissionService>();
 builder.Services.AddScoped<IUserResponseService, UserResponseService>();
+builder.Services.AddScoped<IPasswordHasher, Pbkdf2PasswordHasher>();
 
 // -----------------------------
 // JWT

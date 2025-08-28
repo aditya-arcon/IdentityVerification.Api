@@ -25,6 +25,10 @@ namespace IdentityVerification.Api.Data
                 e.HasIndex(u => u.Email).IsUnique();
                 e.Property(u => u.UserName).IsRequired().HasMaxLength(128);
                 e.Property(u => u.Role).IsRequired().HasMaxLength(64);
+
+                e.Property(u => u.PasswordHash).HasMaxLength(512);
+                e.Property(u => u.PasswordSalt).HasMaxLength(512);
+                e.Property(u => u.IsActive).HasDefaultValue(true);
             });
 
             // Template with CreatedBy -> User.Email (alternate principal key)

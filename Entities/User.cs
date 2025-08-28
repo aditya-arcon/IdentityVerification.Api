@@ -1,24 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace IdentityVerification.Api.Entities
+﻿namespace IdentityVerification.Api.Entities
 {
     public class User
     {
         public int UserID { get; set; }
-
-        [Required, MaxLength(128)]
         public string UserName { get; set; } = string.Empty;
 
-        [Required, MaxLength(256)]
+        // Unique, already enforced in AppDbContext
         public string Email { get; set; } = string.Empty;
 
-        [MaxLength(64)]
         public string? Phone { get; set; }
 
-        [Required, MaxLength(64)]
+        // Roles: "Admin" or "User"
         public string Role { get; set; } = "User";
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        // NEW: password-based auth
+        public string? PasswordHash { get; set; }   // Base64
+        public string? PasswordSalt { get; set; }   // Base64
+        public DateTime? PasswordUpdatedAt { get; set; }
+        public bool IsActive { get; set; } = true;
 
         // Navigation
         public ICollection<Template> CreatedTemplates { get; set; } = new List<Template>();
