@@ -13,6 +13,7 @@ namespace IdentityVerification.Api.Controllers
         public TemplateFormFieldsController(ITemplateFormFieldService service) => _service = service;
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll(CancellationToken ct) => Ok(await _service.GetAllAsync(ct));
 
         [HttpGet("{id:int}")]

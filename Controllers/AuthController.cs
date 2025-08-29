@@ -18,17 +18,17 @@ namespace IdentityVerification.Api.Controllers
         }
 
         /// <summary>Issue JWT by email (legacy/compat).</summary>
-        [HttpPost("token")]
-        [AllowAnonymous]
-        public async Task<ActionResult<TokenResponseDto>> Token([FromBody] TokenRequestDto dto, CancellationToken ct)
-        {
-            var token = await _authService.IssueTokenAsync(dto, ct);
-            return Ok(new TokenResponseDto
-            {
-                Token = token,
-                ExpiresAtUtc = DateTime.UtcNow.AddMinutes(120)
-            });
-        }
+        //[HttpPost("token")]
+        //[AllowAnonymous]
+        //public async Task<ActionResult<TokenResponseDto>> Token([FromBody] TokenRequestDto dto, CancellationToken ct)
+        //{
+        //    var token = await _authService.IssueTokenAsync(dto, ct);
+        //    return Ok(new TokenResponseDto
+        //    {
+        //        Token = token,
+        //        ExpiresAtUtc = DateTime.UtcNow.AddMinutes(120)
+        //    });
+        //}
 
         /// <summary>Register a new user (email + password).</summary>
         [HttpPost("register")]

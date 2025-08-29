@@ -14,11 +14,13 @@ namespace IdentityVerification.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyList<TemplateDto>), StatusCodes.Status200OK)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll(CancellationToken ct) => Ok(await _service.GetAllAsync(ct));
 
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(TemplateDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Get(int id, CancellationToken ct)
         {
             var item = await _service.GetAsync(id, ct);
